@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+  - lts/*
+stages:
+  - lint
+  - build
+  - deploy
+jobs:
+  include:
+    - stage: lint
+      script:
+        # Run linter
+        - npm run lint
+    - stage: build
+      script:
+        # Build all
+        - npm run build
+    - stage: deploy
+      before_deploy:
+        - ./ecr_credentials.sh
+      deploy:
+        provider: script
+        script: 
+          - ./deploy.sh
