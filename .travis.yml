@@ -17,8 +17,8 @@ jobs:
         - npm run build
     - stage: deploy
       before_deploy:
-        - ./ecr_credentials.sh
+        - bash ./ecr_credentials.sh
       deploy:
         provider: script
         script: 
-          - ./deploy.sh
+          - bash ./deploy.sh
